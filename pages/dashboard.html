@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sticky Notes Dashboard</title>
+
+  <link rel="stylesheet" href="../style/dashboard.css">
+
+  <!-- SUPABASE CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <h2>Sticky Notes</h2>
+
+    <button class="add-btn">
+      + New Note
+    </button>
+
+    <button class="logout-btn" onclick="logout()">
+      Logout
+    </button>
+
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+
+      <h1>Your Notes</h1>
+
+      <input
+        type="text"
+        placeholder="Search notes..."
+        class="search-box"
+      >
+
+    </div>
+
+    <!-- CREATE NOTE -->
+    <div class="create-note">
+
+      <input
+        type="text"
+        id="title"
+        placeholder="Enter note title"
+      >
+
+      <textarea
+        id="content"
+        placeholder="Write your note..."
+      ></textarea>
+
+      <button onclick="createNote()">
+        Save Note
+      </button>
+
+    </div>
+
+    <!-- NOTES CONTAINER -->
+    <div class="notes-container" id="notes-container">
+
+  <!-- DUMMY NOTE -->
+
+  <div class="note">
+
+    <button class="delete-btn">
+      X
+    </button>
+
+    <h3>Learn JavaScript</h3>
+
+    <p>
+      Practice DOM manipulation and build
+      sticky notes project using Supabase.
+    </p>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <script src="../script/dashboard.js"></script>
+
+</body>
+</html>
