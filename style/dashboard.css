@@ -102,6 +102,15 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+#delBtn{
+  background: #ed5007;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+
+}
 
 /* NOTES GRID */
 
@@ -134,6 +143,17 @@ body {
   position: absolute;
   top: 10px;
   right: 10px;
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.edit-btn {
+  position: absolute;
+  top: 10px;
+  right: 50px;
   background: crimson;
   color: white;
   border: none;
