@@ -1,83 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sticky Notes Dashboard</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticky Notes Dashboard</title>
 
-  <link rel="stylesheet" href="../style/dashboard.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../style/dashboard.css" />
 
-  <!-- SUPABASE CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-</head>
+    <!-- SUPABASE CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  </head>
 
-<body>
+  <body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <h2>Sticky Notes</h2>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
+      <button class="add-btn">+ New Note</button>
 
-    <h2>Sticky Notes</h2>
-
-    <button class="add-btn">
-      + New Note
-    </button>
-
-    <button class="logout-btn" onclick="logout()">
-      Logout
-    </button>
-
-  </div>
-
-  <!-- MAIN CONTENT -->
-  <div class="main-content">
-
-    <!-- TOP BAR -->
-    <div class="topbar">
-
-      <h1>Your Notes</h1>
-
-      <input
-        type="text"
-        placeholder="Search notes..."
-        class="search-box"
-      >
-
+      <button class="logout-btn" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+      </button>
     </div>
 
-    <!-- CREATE NOTE -->
-    <div class="create-note">
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+      <!-- TOP BAR -->
+      <div class="topbar">
+        <h1>
+          <i class="fa-solid fa-note-sticky"></i>
+          Your Notes
+        </h1>
 
-      <input
-        type="text"
-        id="title"
-        placeholder="Enter note title"
-      >
+        <input type="text" placeholder="Search notes..." class="search-box" />
+      </div>
 
-      <textarea
-        id="content"
-        placeholder="Write your note..."
-      ></textarea>
+      <!-- CREATE NOTE -->
+      <div class="create-note">
+        <input type="text" id="title" placeholder="Enter note title" />
 
-      <button onclick="createNote()">
-        Save Note
-      </button>
-      <button id="delBtn" onclick="deleteAllNote()">
-        Delete All
-      </button>
+        <textarea id="content" placeholder="Write your note..."></textarea>
 
+        <button onclick="createNote()">
+          <i class="fa-solid fa-floppy-disk"></i>
+          Save Note
+        </button>
+        <button id="delBtn" onclick="deleteAllNote()">
+          <i class="fa-solid fa-trash"></i>
+          Delete All
+        </button>
+      </div>
+
+      <!-- NOTES CONTAINER -->
+      <div class="notes-container" id="notes-container">
+        <!-- DUMMY NOTE -->
+      </div>
     </div>
 
-    <!-- NOTES CONTAINER -->
-    <div class="notes-container" id="notes-container">
-
-  <!-- DUMMY NOTE -->
-
-  
-</div>
-
-  </div>
-
-  <script src="../script/dashboard.js"></script>
-
-</body>
+    <script src="../script/dashboard.js"></script>
+  </body>
 </html>

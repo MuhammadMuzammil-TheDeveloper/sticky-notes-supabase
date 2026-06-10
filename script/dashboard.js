@@ -1,39 +1,94 @@
-function createNote() {
+// async function createNote() {
+//   const titleInput = document.getElementById("title");
+//   const contentInput = document.getElementById("content");
+
+//   const title = titleInput.value;
+//   const content = contentInput.value;
+
+//   let notesContainer = document.getElementById("notes-container");
+
+//   // Validation
+//   if (title === "" || content === "") {
+//     alert("Please fill all fields");
+//     return;
+//   }
+//   const {
+//     data: { user },
+//   } = await supabase.auth.getUser();
+//   const { data, error } = await supabaseClient.from("notes").insert([
+//     {
+//       title,
+//       content,
+//       user_id: user.id,
+//     },
+//   ]);
+
+//   // console.log(data);
+
+//   console.log(title, content);
+
+//   let notes = `
+//     <div class="note">
+
+//       <button class="delete-btn" onClick="deleteEach(this)">X</button>
+//       <button class="edit-btn" onClick="editEach(this)">Edit</button>
+
+//       <h3>${title}</h3>
+//       <p>${content}</p>
+
+//     </div>
+//   `;
+
+//   // notesContainer.innerHTML += notes;
+//   await loadNotes();
+//   console.log("Notes Container", notesContainer);
+
+//   // Clear Inputs
+//   titleInput.value = "";
+//   contentInput.value = "";
+// }
+async function createNote() {
   const titleInput = document.getElementById("title");
   const contentInput = document.getElementById("content");
 
   const title = titleInput.value;
   const content = contentInput.value;
 
-  let notesContainer = document.getElementById("notes-container");
-
-  // Validation
   if (title === "" || content === "") {
     alert("Please fill all fields");
     return;
   }
 
-  console.log(title, content);
+  // get user
+  const {
+    data: { user },
+  } = await supabaseClient.auth.getUser();
 
-  let notes = `
-    <div class="note">
+  // insert into DB
+  const { data, error } = await supabaseClient
+    .from("notes")
+    .insert([
+      {
+        title,
+        content,
+        user_id: user.id,
+      },
+    ]);
 
-      <button class="delete-btn" onClick="deleteEach(this)">X</button>
-      <button class="edit-btn" onClick="editEach(this)">Edit</button>
+  if (error) {
+    console.log(error);
+    alert("Error saving note");
+    return;
+  }
 
-      <h3>${title}</h3>
-      <p>${content}</p>
+  console.log("Inserted:", data);
 
-    </div>
-  `;
-
-  notesContainer.innerHTML += notes;
-
-  console.log("Notes Container", notesContainer);
-
-  // Clear Inputs
+  // clear inputs
   titleInput.value = "";
   contentInput.value = "";
+
+  // reload UI from DB
+  loadNotes();
 }
 
 function deleteEach(button) {
@@ -51,8 +106,8 @@ function editEach(button) {
   content.innerText = newContent;
 }
 
-function deleteAllNote(){
-    let notesContainer = document.getElementById("notes-container");
-    notesContainer.innerHTML="";
-
+function deleteAllNote() {
+  let notesContainer = document.getElementById("notes-container");
+  notesContainer.innerHTML = "";
 }
+
