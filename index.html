@@ -1,37 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>Sticky Notes App</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- Supabase CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
-
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <h1>Sticky Notes App</h1>
+  <!-- AUTH SECTION -->
+  <div id="auth-section">
+    <h2>Login / Signup</h2>
 
-    <!-- AUTH BOX -->
-    <div class="auth-box">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
 
-      <input type="email" id="email" placeholder="Enter Email">
+    <button onclick="signup()">Signup</button>
+    <button onclick="login()">Login</button>
+  </div>
 
-      <input type="password" id="password" placeholder="Enter Password">
+  <!-- APP SECTION -->
+  <div id="app-section" class="hidden">
 
-      <div class="buttons">
-        <button onclick="signUp()">Sign Up</button>
-        <button onclick="login()">Login</button>
-      </div>
+    <h2>Sticky Notes</h2>
+    <button onclick="logout()">Logout</button>
 
+    <div class="note-input">
+      <input type="text" id="title" placeholder="Title">
+      <textarea id="content" placeholder="Write note..."></textarea>
+      <button onclick="addNote()">Add Note</button>
     </div>
 
-  </div>
-  
+    <div id="notes-container"></div>
 
-  <script src="app.js"></script>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="app.js"></script>
+
 </body>
 </html>
