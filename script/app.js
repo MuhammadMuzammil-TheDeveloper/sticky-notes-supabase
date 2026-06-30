@@ -12,9 +12,7 @@ const client = supabase.createClient(supabaseUrl, supabaseKey);
 let signUp = document.getElementById("signUp");
 let login = document.getElementById("login");
 
-
 signUp.addEventListener("click", async () => {
-
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
@@ -23,11 +21,13 @@ signUp.addEventListener("click", async () => {
     password: password,
   });
 
-  console.log("data", data);
-  console.log("error", error);
-
+  if (error) {
+    console.log("error", error);
+  } else {
+    console.log("data", data);
+    alert("Successfully Register");
+  }
 });
-
 
 login.addEventListener("click", async () => {
   console.log("workingg...");
@@ -38,40 +38,14 @@ login.addEventListener("click", async () => {
     email: email,
     password: password,
   });
-  console.log("data", data)
-  console.log("error", error)
+  if(error){
+    console.log("error", error);
+  }
+  else{
+    console.log("data", data);
+    window.location.href = './pages/dashboard.html'
+  }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // async function signup() {
 //   const email = document.getElementById("email").value;

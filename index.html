@@ -1,44 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sticky Notes App</title>
+  <meta charset="UTF-8">
+  <title>Sticky Notes – Login / Signup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./stylesheet/style.css">
 </head>
 <body>
+  <div class="auth-bg"></div>
+  <div class="auth-rainbow"></div>
 
-<div class="container">
+  <div class="auth-layout">
+    <div class="auth-left">
+      <div class="brand-badge">
+        <span class="brand-logo">📝</span>
+        <div class="brand-text">
+          <span class="brand-title">Sticky Notes</span>
+          <span class="brand-subtitle">Supabase powered</span>
+        </div>
+      </div>
 
-  <!-- AUTH SECTION -->
-  <div id="auth-section">
-    <h2>Login / Signup</h2>
+      <h1 class="hero-title">Capture ideas. Organize life.</h1>
+      <p class="hero-subtitle">
+        A modern sticky notes app with real-time sync, beautiful UI, and blazing fast performance.
+      </p>
 
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-
-    <button id="signUp">Signup</button>
-    <button id="login">Login</button>
-  </div>
-
-  <!-- APP SECTION -->
-  <div id="app-section" class="hidden">
-
-    <h2>Sticky Notes</h2>
-    <button onclick="logout()">Logout</button>
-
-    <div class="note-input">
-      <input type="text" id="title" placeholder="Title">
-      <textarea id="content" placeholder="Write note..."></textarea>
-      <button onclick="addNote()">Add Note</button>
+      <ul class="hero-list">
+        <li><span class="dot"></span>Secure authentication with Supabase</li>
+        <li><span class="dot"></span>Access your notes anywhere</li>
+        <li><span class="dot"></span>Clean, distraction-free interface</li>
+      </ul>
     </div>
 
-    <div id="notes-container"></div>
+    <div class="auth-right">
+      <div class="auth-card fade-in">
+        <div class="auth-card-header">
+          <h2>Welcome back</h2>
+          <p>Login or create an account to manage your notes.</p>
+        </div>
 
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-mode="login">Login</button>
+          <button class="auth-tab" data-mode="signup">Signup</button>
+        </div>
+
+        <div class="auth-form">
+          <div class="floating-group">
+            <input type="email" id="email" required placeholder=" ">
+            <label for="email">Email</label>
+          </div>
+
+          <div class="floating-group">
+            <input type="password" id="password" required placeholder=" ">
+            <label for="password">Password</label>
+          </div>
+
+          <div class="auth-row">
+            <label class="checkbox">
+              <input type="checkbox" id="rememberMe">
+              <span class="checkmark"></span>
+              <span>Remember me</span>
+            </label>
+            <button type="button" class="link-btn" id="forgotPassword">Forgot password?</button>
+          </div>
+
+          <div class="auth-actions">
+            <!-- IDs must stay exactly the same -->
+            <button id="login" class="btn primary ripple">Login</button>
+            <button id="signUp" class="btn secondary ripple">Signup</button>
+          </div>
+
+          <div class="auth-status">
+            <span id="auth-message"></span>
+            <span class="loader" id="auth-loader"></span>
+          </div>
+
+          <div class="divider">
+            <span>or continue with</span>
+          </div>
+
+          <div class="social-row">
+            <button type="button" class="social-btn ripple" id="loginGoogle">
+              <span class="social-icon">G</span>
+              <span>Google</span>
+            </button>
+            <button type="button" class="social-btn ripple" id="loginGithub">
+              <span class="social-icon">GH</span>
+              <span>GitHub</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="auth-footer">
+          <small>By continuing, you agree to our Terms & Privacy.</small>
+        </div>
+      </div>
+    </div>
   </div>
 
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="./script/app.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="./script/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sticky Notes – Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stylesheet/dashboard.css">
+</head>
+<body>
+  <div class="dashboard-bg"></div>
+  <div class="dashboard-rainbow"></div>
+
+  <div class="dashboard-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar fade-in">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">📝</div>
+        <div class="sidebar-title">
+          <span>Sticky Notes</span>
+          <small>Dashboard</small>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-view="notes">
+          <span class="nav-icon">📒</span>
+          <span>Notes</span>
+        </button>
+        <button class="nav-item" data-view="trash">
+          <span class="nav-icon">🗑️</span>
+          <span>Trash</span>
+        </button>
+        <button class="nav-item" data-view="settings">
+          <span class="nav-icon">⚙️</span>
+          <span>Settings</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="logoutBtn" class="btn outline ripple">Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-area fade-in">
+      <header class="main-header">
+        <div>
+          <h1>All Notes</h1>
+          <p>Organize your thoughts, tasks, and ideas in one place.</p>
+        </div>
+        <div class="header-actions">
+          <button id="deleteAllNotes" class="btn ghost ripple">Delete All</button>
+        </div>
+      </header>
+
+      <section id="emptyState" class="empty-state">
+        <div class="empty-card">
+          <h3>No notes yet</h3>
+          <p>Click “New Note” to create your first sticky note.</p>
+        </div>
+      </section>
+
+      <section id="notesGrid" class="notes-grid">
+        <!-- Notes will be rendered here -->
+      </section>
+
+      <!-- Floating New Note button -->
+      <button id="addNoteFab" class="fab ripple">
+        <span>+</span>
+      </button>
+    </main>
+  </div>
+
+  <!-- Note modal -->
+  <div id="noteModal" class="modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content slide-up">
+      <div class="modal-header">
+        <h3 id="modalTitle">New Note</h3>
+        <button id="closeModal" class="icon-btn ripple">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="floating-group">
+          <input type="text" id="noteTitle" required placeholder=" ">
+          <label for="noteTitle">Title</label>
+        </div>
+        <div class="floating-group">
+          <textarea id="noteContent" rows="4" required placeholder=" "></textarea>
+          <label for="noteContent">Content</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="saveNoteBtn" class="btn primary ripple">Save Note</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="../script/dashboard.js"></script>
+</body>
+</html>
