@@ -155,3 +155,12 @@ logoutBtn.addEventListener("click", async () => {
   await client.auth.signOut();
   window.location.href = "../index.html";
 });
+
+
+logoutBtn.addEventListener("click", async ()=>{
+
+    await client.auth.signOut();
+
+    window.location.href="../index.html";
+
+});
