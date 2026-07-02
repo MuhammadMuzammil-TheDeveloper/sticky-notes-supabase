@@ -218,6 +218,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 10px;
   gap: 8px;
   transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease;
 }
