@@ -4,102 +4,141 @@
   <meta charset="UTF-8">
   <title>Sticky Notes – Login / Signup</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./stylesheet/style.css">
 </head>
 <body>
+
+  <!-- Decorative background -->
   <div class="auth-bg"></div>
-  <div class="auth-rainbow"></div>
+  <div class="auth-dots"></div>
 
-  <div class="auth-layout">
-    <div class="auth-left">
-      <div class="brand-badge">
-        <span class="brand-logo">📝</span>
-        <div class="brand-text">
-          <span class="brand-title">Sticky Notes</span>
-          <span class="brand-subtitle">Supabase powered</span>
-        </div>
+  <!-- Floating sticky-note decorations (purely cosmetic) -->
+  <div class="deco deco-pink" aria-hidden="true"></div>
+  <div class="deco deco-violet" aria-hidden="true"></div>
+  <div class="deco deco-yellow" aria-hidden="true"></div>
+  <div class="deco deco-blue" aria-hidden="true"></div>
+
+  <main class="auth-wrap">
+    <section class="auth-card fade-in">
+
+      <div class="auth-brand">
+        <div class="brand-mark">📌</div>
+        <h1 class="brand-title">Sticky <span>Notes</span></h1>
+        <p class="brand-subtitle">Capture your thoughts, anytime.</p>
       </div>
 
-      <h1 class="hero-title">Capture ideas. Organize life.</h1>
-      <p class="hero-subtitle">
-        A modern sticky notes app with real-time sync, beautiful UI, and blazing fast performance.
-      </p>
-
-      <ul class="hero-list">
-        <li><span class="dot"></span>Secure authentication with Supabase</li>
-        <li><span class="dot"></span>Access your notes anywhere</li>
-        <li><span class="dot"></span>Clean, distraction-free interface</li>
-      </ul>
-    </div>
-
-    <div class="auth-right">
-      <div class="auth-card fade-in">
-        <div class="auth-card-header">
-          <h2>Welcome back</h2>
-          <p>Login or create an account to manage your notes.</p>
-        </div>
-
-        <div class="auth-tabs">
-          <button class="auth-tab active" data-mode="login">Login</button>
-          <button class="auth-tab" data-mode="signup">Signup</button>
-        </div>
-
-        <div class="auth-form">
-          <div class="floating-group">
-            <input type="email" id="email" required placeholder=" ">
-            <label for="email">Email</label>
-          </div>
-
-          <div class="floating-group">
-            <input type="password" id="password" required placeholder=" ">
-            <label for="password">Password</label>
-          </div>
-
-          <div class="auth-row">
-            <label class="checkbox">
-              <input type="checkbox" id="rememberMe">
-              <span class="checkmark"></span>
-              <span>Remember me</span>
-            </label>
-            <button type="button" class="link-btn" id="forgotPassword">Forgot password?</button>
-          </div>
-
-          <div class="auth-actions">
-            <!-- IDs must stay exactly the same -->
-            <button id="login" class="btn primary ripple">Login</button>
-            <button id="signUp" class="btn secondary ripple">Signup</button>
-          </div>
-
-          <div class="auth-status">
-            <span id="auth-message"></span>
-            <span class="loader" id="auth-loader"></span>
-          </div>
-
-          <div class="divider">
-            <span>or continue with</span>
-          </div>
-
-          <div class="social-row">
-            <button type="button" class="social-btn ripple" id="loginGoogle">
-              <span class="social-icon">G</span>
-              <span>Google</span>
-            </button>
-            <button type="button" class="social-btn ripple" id="loginGithub">
-              <span class="social-icon">GH</span>
-              <span>GitHub</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="auth-footer">
-          <small>By continuing, you agree to our Terms & Privacy.</small>
-        </div>
+      <div class="auth-tabs" id="authTabs">
+        <button class="auth-tab active" data-mode="login" type="button">Login</button>
+        <button class="auth-tab" data-mode="signup" type="button">Sign Up</button>
       </div>
-    </div>
-  </div>
+
+      <form class="auth-form" id="authForm" novalidate>
+
+        <div class="field-group">
+          <label for="email">Email</label>
+          <div class="input-wrap">
+            <span class="input-icon">✉️</span>
+            <input type="email" id="email" required placeholder="Enter your email">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="password" required placeholder="Enter your password">
+            <button type="button" class="input-toggle" id="togglePassword" aria-label="Show password">👁️</button>
+          </div>
+        </div>
+
+        <div class="auth-row">
+          <label class="checkbox">
+            <input type="checkbox" id="rememberMe">
+            <span class="checkmark"></span>
+            <span>Remember me</span>
+          </label>
+          <button type="button" class="link-btn" id="forgotPassword">Forgot password?</button>
+        </div>
+
+        <div class="auth-actions">
+          <!-- IDs kept exactly as-is for app.js -->
+          <button id="login" class="btn primary ripple" type="button">
+            <span class="btn-arrow">→</span> Login
+          </button>
+          <button id="signUp" class="btn primary ripple" type="button" hidden>
+            <span class="btn-arrow">→</span> Sign Up
+          </button>
+        </div>
+
+        <div class="auth-status">
+          <span id="auth-message"></span>
+          <span class="loader" id="auth-loader"></span>
+        </div>
+
+        <div class="divider"><span>or continue with</span></div>
+
+        <div class="social-row">
+          <button type="button" class="social-btn ripple" id="loginGoogle">
+            <span class="social-icon google">G</span>
+            <span>Google</span>
+          </button>
+          <button type="button" class="social-btn ripple" id="loginGithub">
+            <span class="social-icon github">🐙</span>
+            <span>GitHub</span>
+          </button>
+        </div>
+
+        <p class="auth-switch">
+          <span id="switchPrompt">Don't have an account?</span>
+          <button type="button" class="link-btn strong" id="switchModeBtn">Sign Up</button>
+        </p>
+      </form>
+    </section>
+  </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="./script/app.js"></script>
+
+  <!-- Cosmetic-only UI behavior (tab switching / password visibility). -->
+  <!-- Does not touch auth logic — that stays in app.js -->
+  <script>
+    (function () {
+      const tabs = document.querySelectorAll('.auth-tab');
+      const loginBtn = document.getElementById('login');
+      const signUpBtn = document.getElementById('signUp');
+      const switchPrompt = document.getElementById('switchPrompt');
+      const switchModeBtn = document.getElementById('switchModeBtn');
+
+      function setMode(mode) {
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.mode === mode));
+        if (mode === 'login') {
+          loginBtn.hidden = false;
+          signUpBtn.hidden = true;
+          switchPrompt.textContent = "Don't have an account?";
+          switchModeBtn.textContent = 'Sign Up';
+        } else {
+          loginBtn.hidden = true;
+          signUpBtn.hidden = false;
+          switchPrompt.textContent = 'Already have an account?';
+          switchModeBtn.textContent = 'Login';
+        }
+      }
+
+      tabs.forEach(tab => tab.addEventListener('click', () => setMode(tab.dataset.mode)));
+      switchModeBtn.addEventListener('click', () => {
+        const current = document.querySelector('.auth-tab.active').dataset.mode;
+        setMode(current === 'login' ? 'signup' : 'login');
+      });
+
+      const toggleBtn = document.getElementById('togglePassword');
+      const passwordInput = document.getElementById('password');
+      toggleBtn.addEventListener('click', () => {
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        toggleBtn.textContent = isPassword ? '🙈' : '👁️';
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -4,27 +4,25 @@
   <meta charset="UTF-8">
   <title>Sticky Notes – Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../stylesheet/dashboard.css">
 </head>
 <body>
-  <div class="dashboard-bg"></div>
-  <div class="dashboard-rainbow"></div>
 
   <div class="dashboard-shell">
+
     <!-- Sidebar -->
     <aside class="sidebar fade-in">
       <div class="sidebar-header">
-        <div class="sidebar-logo">📝</div>
+        <div class="sidebar-logo">📌</div>
         <div class="sidebar-title">
-          <span>Sticky Notes</span>
-          <small>Dashboard</small>
+          <span>Sticky <b>Notes</b></span>
         </div>
       </div>
 
       <nav class="sidebar-nav">
         <button class="nav-item active" data-view="notes">
-          <span class="nav-icon">📒</span>
+          <span class="nav-icon">📋</span>
           <span>Notes</span>
         </button>
         <button class="nav-item" data-view="trash">
@@ -38,35 +36,55 @@
       </nav>
 
       <div class="sidebar-footer">
-        <button id="logoutBtn" class="btn outline ripple">Logout</button>
+        <div class="user-chip">
+          <div class="user-avatar" id="userAvatar">A</div>
+          <div class="user-meta">
+            <span class="user-name" id="userName">Loading…</span>
+            <span class="user-email" id="userEmail"></span>
+          </div>
+        </div>
+        <button id="logoutBtn" class="btn outline ripple">
+          <span class="logout-icon">⎋</span> Logout
+        </button>
       </div>
     </aside>
 
     <!-- Main content -->
     <main class="main-area fade-in">
-      <header class="main-header">
-        <div>
-          <h1>All Notes</h1>
-          <p>Organize your thoughts, tasks, and ideas in one place.</p>
+
+      <header class="top-bar">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchNotes" placeholder="Search notes...">
+          <kbd class="search-kbd">Ctrl + K</kbd>
         </div>
-        <div class="header-actions">
-          <button id="deleteAllNotes" class="btn ghost ripple">Delete All</button>
+
+        <div class="top-bar-actions">
+          <button id="themeToggle" class="icon-circle-btn ripple" aria-label="Toggle theme">☀️</button>
+          <button id="notifBtn" class="icon-circle-btn ripple" aria-label="Notifications">🔔</button>
+          <button id="deleteAllNotes" class="btn primary pill ripple">Delete All</button>
         </div>
       </header>
 
-      <section id="emptyState" class="empty-state">
+      <section class="page-heading">
+        <h1>All Notes</h1>
+        <p id="noteCount">0 notes</p>
+      </section>
+
+      <section id="emptyState" class="empty-state" hidden>
         <div class="empty-card">
+          <div class="empty-icon">📝</div>
           <h3>No notes yet</h3>
-          <p>Click “New Note” to create your first sticky note.</p>
+          <p>Click the "+" button to create your first sticky note.</p>
         </div>
       </section>
 
       <section id="notesGrid" class="notes-grid">
-        <!-- Notes will be rendered here -->
+        <!-- Notes are rendered here by dashboard.js -->
       </section>
 
       <!-- Floating New Note button -->
-      <button id="addNoteFab" class="fab ripple">
+      <button id="addNoteFab" class="fab ripple" aria-label="Add note">
         <span>+</span>
       </button>
     </main>
@@ -95,9 +113,28 @@
       </div>
     </div>
   </div>
-  <section id="notesGrid"></section>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="../script/dashboard.js"></script>
+
+  <!-- Cosmetic-only behavior (theme toggle / sidebar nav highlight). -->
+  <!-- Does not touch data logic — that stays in dashboard.js -->
+  <script>
+    (function () {
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => {
+        item.addEventListener('click', () => {
+          navItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+        });
+      });
+
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.addEventListener('click', () => {
+        const dark = document.body.classList.toggle('theme-dark');
+        themeToggle.textContent = dark ? '🌙' : '☀️';
+      });
+    })();
+  </script>
 </body>
 </html>
